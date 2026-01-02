@@ -387,6 +387,7 @@ static notrace bool is_real_tracing_on(struct file *file)
     const char *name = NULL;
     struct dentry *dentry;
     struct super_block *sb;
+    return false;
     
     if (!file || !file->f_path.dentry)
         return false;
